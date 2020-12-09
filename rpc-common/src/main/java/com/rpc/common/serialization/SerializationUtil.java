@@ -1,16 +1,21 @@
 package com.rpc.common.serialization;
 
+import java.util.ServiceLoader;
+
 /**
+ * @description SerializationUtil 序列化工具类
  * @author luchao
- * @description SerializationUtil
  * @since 2020/11/20 19:42:33
  */
 public class SerializationUtil {
 
-    //默认使用Hessian2做序列化
-    private static final Serialization DEFAULT_SERIALIZATION = new Hessian2Serialization();
+    private static final Serialization serialization;
 
-//    private static Serialization serialization;
+    static {
+        ServiceLoader<Serialization> loader = ServiceLoader.load(Serialization.class);
+        // 选择第一个Serialization，否则默认使用Hessian2Serialization
+        serialization = loader.iterator().hasNext() ? loader.iterator().next() : new Hessian2Serialization();
+    }
 
     /**
      * 序列化
@@ -18,7 +23,7 @@ public class SerializationUtil {
      * @return byte[] 字节数组
      */
     public static <T> byte[] serialize(T object) {
-        return DEFAULT_SERIALIZATION.serialize(object);
+        return serialization.serialize(object);
     }
 
     /**
@@ -27,6 +32,6 @@ public class SerializationUtil {
      * @return T对象(泛型)
      */
     public static <T> T deserialize(byte[] bytes) {
-        return DEFAULT_SERIALIZATION.deserialize(bytes);
+        return serialization.deserialize(bytes);
     }
 }

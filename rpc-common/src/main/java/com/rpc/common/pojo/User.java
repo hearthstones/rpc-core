@@ -1,4 +1,4 @@
-package com.rpc.common.POJO;
+package com.rpc.common.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,6 +2,7 @@ package com.rpc.common.serialization;
 
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
+import com.rpc.common.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
@@ -66,14 +67,13 @@ public class Hessian2Serialization extends Serialization {
         return result;
     }
 
-  /*  public static void main(String[] args) {
+    public static void main(String[] args) {
         User user = new User("lu", 20);
-        Hessian2Serialization hs = new Hessian2Serialization();
-        byte[] ub = hs.serialize(user);
+        byte[] ub = SerializationUtil.serialize(user);
         log.info(ub + ", length = " + ub.length);
-        User userDs = hs.deserialize(ub);
+        User userDs = SerializationUtil.deserialize(ub);
         log.info(userDs.toString());
-    }*/
+    }
 }
 
 
