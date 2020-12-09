@@ -1,0 +1,30 @@
+server:
+  port: 8004
+
+#dubbo:
+#  protocol:
+#    name: dubbo
+#    # 自增端口
+#    port: -1
+#    serialization:
+#  registry:
+#    # 挂载到 Spring Cloud 注册中心
+#    address: spring-cloud://localhost
+#  cloud:
+#    # 订阅的服务名列表，多个服务以 "," 分隔
+#    subscribed-services: dubbo-provider
+#  consumer:
+#    check: false
+
+spring:
+  application:
+    # 应用名称
+    name: rpc-consumer
+  main:
+    # Spring Boot 2.1 需要设定
+    allow-bean-definition-overriding: true
+#  cloud:
+#    nacos:
+#      # Nacos 服务发现与注册配置
+#      discovery:
+#        server-addr: 127.0.0.1:8848
